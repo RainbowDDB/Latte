@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBar;
 
 import com.rainbow.latte.activity.ProxyActivity;
 import com.rainbow.latte.delegate.LatteDelegate;
-import com.rainbow.latte.ec.sign.SignInDelegate;
 import com.rainbow.latte.util.logger.LatteLogger;
 
 public class MainActivity extends ProxyActivity {
@@ -23,6 +22,6 @@ public class MainActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new SignInDelegate();
+        return new ExampleDelegate();
     }
 }

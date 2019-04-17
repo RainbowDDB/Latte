@@ -12,9 +12,20 @@ public abstract class BottomItemDelegate extends LatteDelegate implements View.O
     private long mExitTime = 0;
 
     @Override
+    public void onResume() {
+        super.onResume();
+        final View rootView = getView();
+        if (rootView != null) {
+            rootView.setFocusableInTouchMode(true);
+            rootView.requestFocus();
+            rootView.setOnKeyListener(this);
+        }
+    }
+
+    @Override
     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
         if (keyCode == KeyEvent.KEYCODE_BACK && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - mExitTime) > mExitTime) {
+            if ((System.currentTimeMillis() - mExitTime) > EXIT_TIME) {
                 Toast.makeText(getContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 mExitTime = System.currentTimeMillis();
             } else {
