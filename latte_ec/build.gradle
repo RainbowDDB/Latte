@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 28
@@ -25,5 +27,6 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
     api project(':latte_core')
 }

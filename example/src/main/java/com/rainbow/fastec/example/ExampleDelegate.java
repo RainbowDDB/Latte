@@ -22,9 +22,9 @@ public class ExampleDelegate extends LatteDelegate {
 
     private void test() {
         RestClient.builder()
-                .url("https://www.baidu.com/")
+                .url("http://127.0.0.1/index")
                 .params("", "")
-                //.loader(getContext())
+                .loader(getContext())
                 .onRequest(new IRequest() {
                     @Override
                     public void onRequestStart() {
@@ -37,7 +37,7 @@ public class ExampleDelegate extends LatteDelegate {
                     }
                 })
                 .success((response) -> {
-                    //Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                 })
                 .failure(() -> {
 

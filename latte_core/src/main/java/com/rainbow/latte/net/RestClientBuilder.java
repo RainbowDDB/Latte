@@ -6,7 +6,7 @@ import com.rainbow.latte.net.callback.IError;
 import com.rainbow.latte.net.callback.IFailure;
 import com.rainbow.latte.net.callback.IRequest;
 import com.rainbow.latte.net.callback.ISuccess;
-import com.rainbow.latte.ui.LoaderStyle;
+import com.rainbow.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

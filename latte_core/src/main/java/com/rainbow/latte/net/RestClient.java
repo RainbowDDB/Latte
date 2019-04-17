@@ -8,8 +8,8 @@ import com.rainbow.latte.net.callback.IRequest;
 import com.rainbow.latte.net.callback.ISuccess;
 import com.rainbow.latte.net.callback.RequestCallbacks;
 import com.rainbow.latte.net.download.DownloadHandler;
-import com.rainbow.latte.ui.LatteLoader;
-import com.rainbow.latte.ui.LoaderStyle;
+import com.rainbow.latte.ui.loader.LatteLoader;
+import com.rainbow.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

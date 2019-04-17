@@ -1,4 +1,4 @@
-package com.rainbow.latte.ui;
+package com.rainbow.latte.ui.loader;
 
 import android.content.Context;
 

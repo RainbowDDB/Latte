@@ -17,6 +17,11 @@ public abstract class ProxyActivity extends SupportActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initContainer(savedInstanceState);
+        if (savedInstanceState == null) {
+            if (findFragment(setRootDelegate().getClass()) == null) {
+                loadRootFragment(R.id.delegate_container, setRootDelegate());
+            }
+        }
     }
 
     private void initContainer(@Nullable Bundle savedInstanceState) {

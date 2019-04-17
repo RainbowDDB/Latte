@@ -1,11 +1,13 @@
 package com.rainbow.latte.net;
 
-import com.rainbow.latte.app.ConfigType;
+import com.rainbow.latte.app.ConfigKeys;
 import com.rainbow.latte.app.Latte;
 
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -13,7 +15,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RestCreator {
 
     private static final class ParamsHolder {
-        public static WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
+        static WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
 
     public static WeakHashMap<String, Object> getParams() {
@@ -27,7 +29,7 @@ public class RestCreator {
 
     private static final class RetrofitHolder {
         private static final String BASE_URL =
-                (String) Latte.getConfigurations().get(ConfigType.API_HOST.name());
+                (String) Latte.getConfiguration(ConfigKeys.API_HOST);
         @SuppressWarnings("all") // 忽略BASE_URL为空的情况，因为Retrofit内部有处理
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -38,9 +40,21 @@ public class RestCreator {
 
     private static final class OkHttpHolder {
         private static final int TIME_OUT = 60;
-        private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
+        private static final ArrayList<Interceptor> INTERCEPTORS =
+                Latte.getConfiguration(ConfigKeys.INTERCEPTORS);
+        private static final OkHttpClient OK_HTTP_CLIENT = addInterceptors()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .build();
+
+        private static OkHttpClient.Builder addInterceptors() {
+            OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
+            if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
+                for (int i = 0; i < INTERCEPTORS.size(); i++) {
+                    BUILDER.addInterceptor(INTERCEPTORS.get(i));
+                }
+            }
+            return BUILDER;
+        }
     }
 
     private static final class RestServiceHolder {
