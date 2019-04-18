@@ -2,6 +2,8 @@ package com.rainbow.latte.net;
 
 import com.rainbow.latte.app.ConfigKeys;
 import com.rainbow.latte.app.Latte;
+import com.rainbow.latte.net.cookie.CookieManager;
+import com.rainbow.latte.net.cookie.PersistentCookieStore;
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;
@@ -28,8 +30,7 @@ public class RestCreator {
 
 
     private static final class RetrofitHolder {
-        private static final String BASE_URL =
-                (String) Latte.getConfiguration(ConfigKeys.API_HOST);
+        private static final String BASE_URL = Latte.getConfiguration(ConfigKeys.API_HOST);
         @SuppressWarnings("all") // 忽略BASE_URL为空的情况，因为Retrofit内部有处理
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -44,6 +45,8 @@ public class RestCreator {
                 Latte.getConfiguration(ConfigKeys.INTERCEPTORS);
         private static final OkHttpClient OK_HTTP_CLIENT = addInterceptors()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                // 登录状态cookie保存，自动登录功能
+                .cookieJar(new CookieManager(new PersistentCookieStore(Latte.getApplicationContext())))
                 .build();
 
         private static OkHttpClient.Builder addInterceptors() {
