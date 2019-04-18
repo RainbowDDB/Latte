@@ -1,6 +1,7 @@
 package com.rainbow.latte.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 /**
  * Latte模块主架构
@@ -23,5 +24,9 @@ public final class Latte {
 
     public static Context getApplicationContext() {
         return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
+    }
+
+    public static Handler getHandler() {
+        return getConfiguration(ConfigKeys.HANDLER);
     }
 }

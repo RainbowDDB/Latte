@@ -8,5 +8,6 @@ public enum ConfigKeys {
     APPLICATION_CONTEXT, // 全局上下文
     CONFIG_READY, // 初始化是否完成
     ICON, // 自定义初始化项目
-    INTERCEPTORS // 拦截器
+    INTERCEPTORS, // 拦截器
+    HANDLER
 }

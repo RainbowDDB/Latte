@@ -1,4 +1,4 @@
-package com.rainbow.latte.img;
+package com.rainbow.latte.ui.img;
 
 import android.content.Context;
 import android.os.Looper;
