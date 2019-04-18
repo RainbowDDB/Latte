@@ -3,7 +3,7 @@ package com.rainbow.latte.ec.icon;
 import com.joanzapata.iconify.Icon;
 
 public enum EcIcons implements Icon {
-    icon_icon('\ue606'),
+    icon_scan('\ue606'),
     icon_ali_pay('\ue606');
 
     private char character;

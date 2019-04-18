@@ -3,8 +3,8 @@ package com.rainbow.latte.util.storage;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.rainbow.latte.app.Latte;
 
 @SuppressWarnings("unused")
@@ -34,9 +34,9 @@ public final class LattePreference {
                 .apply();
     }
 
-    public static JSONObject getAppProfileJson() {
+    public static JsonObject getAppProfileJson() {
         final String profile = getAppProfile();
-        return JSON.parseObject(profile);
+        return new JsonParser().parse(profile).getAsJsonObject();
     }
 
     public static void removeAppProfile() {
