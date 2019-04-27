@@ -11,19 +11,22 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rainbow.latte.R;
 import com.rainbow.latte.ui.banner.BannerCreator;
 import com.rainbow.latte.ui.img.GlideApp;
+import com.rainbow.latte.ui.recycler.data.DataConverter;
+import com.rainbow.latte.ui.recycler.data.ItemType;
+import com.rainbow.latte.ui.recycler.data.MultipleFields;
+import com.rainbow.latte.ui.recycler.data.MultipleItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MultipleRecyclerAdapter
         extends BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
-        implements BaseQuickAdapter.SpanSizeLookup,
-        OnItemClickListener {
+        implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener {
 
     // 确保初始化一次Banner，防止重复item加载
     private boolean mIsInitBanner = false;
 
-    protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
+    private MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
         init();
     }

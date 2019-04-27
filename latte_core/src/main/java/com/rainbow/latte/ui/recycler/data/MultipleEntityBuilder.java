@@ -1,4 +1,4 @@
-package com.rainbow.latte.ui.recycler;
+package com.rainbow.latte.ui.recycler.data;
 
 import java.util.LinkedHashMap;
 
@@ -6,7 +6,7 @@ public class MultipleEntityBuilder {
 
     private static final LinkedHashMap<Object, Object> FIELDS = new LinkedHashMap<>();
 
-    public MultipleEntityBuilder() {
+    MultipleEntityBuilder() {
         // 每次加载数据需清空之前的数据
         FIELDS.clear();
     }

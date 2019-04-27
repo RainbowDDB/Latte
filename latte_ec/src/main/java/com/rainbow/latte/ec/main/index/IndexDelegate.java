@@ -13,6 +13,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.rainbow.latte.delegate.bottom.BottomItemDelegate;
 import com.rainbow.latte.ec.R;
 import com.rainbow.latte.ec.R2;
+import com.rainbow.latte.ui.recycler.divider.BaseDecoration;
 import com.rainbow.latte.ui.refresh.RefreshHandler;
 
 import org.jetbrains.annotations.NotNull;
@@ -36,6 +37,7 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NotNull View rootView) {
+//        StatusBarCompat.setStatusBarColor(getProxyActivity(), getResources().getColor(android.R.color.holo_orange_dark));
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
     }
 
@@ -51,6 +53,7 @@ public class IndexDelegate extends BottomItemDelegate {
     private void initRecyclerView() {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.addItemDecoration(BaseDecoration.create(4));
     }
 
     @Override

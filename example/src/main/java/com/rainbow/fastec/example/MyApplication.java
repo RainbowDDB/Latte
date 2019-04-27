@@ -3,6 +3,7 @@ package com.rainbow.fastec.example;
 import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.rainbow.fastec.example.event.TestEvent;
 import com.rainbow.latte.app.Latte;
 import com.rainbow.latte.ec.database.DatabaseManager;
 import com.rainbow.latte.ec.icon.FontEcModule;
@@ -16,8 +17,11 @@ public class MyApplication extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                .withApiHost("http://127.0.0.1/")
-                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withApiHost("http://192.168.31.16/")
+                .withInterceptor(new DebugInterceptor("index", R.raw.index_data))
+                .withJavascriptInterface("latte")
+                .withWebEvent("test", new TestEvent())
+                .debug(true)
                 .configure();
 
         DatabaseManager.getInstance().init(this);

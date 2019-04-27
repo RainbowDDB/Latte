@@ -1,5 +1,10 @@
-package com.rainbow.latte.ui.recycler;
+package com.rainbow.latte.ui.recycler.data;
 
+/**
+ * 所有的RecyclerView数据的形式，请将所有的形式自定义于这里
+ *
+ * @author Rainbow
+ */
 public class ItemType {
 
     public static final int TEXT = 1;

@@ -1,4 +1,4 @@
-package com.rainbow.latte.ui.recycler;
+package com.rainbow.latte.ui.recycler.data;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 

@@ -25,7 +25,7 @@ public class ExampleDelegate extends LatteDelegate {
 
     private void test() {
         RestClient.builder()
-                .url("http://127.0.0.1/index")
+                .url("data/index_data.json")
                 .params("", "")
                 .loader(getContext())
                 .onRequest(new IRequest() {

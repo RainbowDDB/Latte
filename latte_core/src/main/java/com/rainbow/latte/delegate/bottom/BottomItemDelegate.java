@@ -1,5 +1,7 @@
 package com.rainbow.latte.delegate.bottom;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -10,6 +12,13 @@ public abstract class BottomItemDelegate extends LatteDelegate implements View.O
 
     private static final int EXIT_TIME = 2000;
     private long mExitTime = 0;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // 禁止滑动
+        setSwipeBackEnable(false);
+    }
 
     @Override
     public void onResume() {

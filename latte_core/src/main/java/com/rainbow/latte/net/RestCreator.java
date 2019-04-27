@@ -14,6 +14,9 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+/**
+ * Retrofit + OkHttp 配置
+ */
 public class RestCreator {
 
     private static final class ParamsHolder {
@@ -28,7 +31,7 @@ public class RestCreator {
         return RestServiceHolder.REST_SERVICE;
     }
 
-
+    // 懒汉模式
     private static final class RetrofitHolder {
         private static final String BASE_URL = Latte.getConfiguration(ConfigKeys.API_HOST);
         @SuppressWarnings("all") // 忽略BASE_URL为空的情况，因为Retrofit内部有处理

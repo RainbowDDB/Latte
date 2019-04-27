@@ -1,7 +1,7 @@
-package com.rainbow.latte.ui.recycler;
+package com.rainbow.latte.ui.recycler.data;
 
 /**
- * 各种数据类型定义在此处
+ * 各种数据类型（此数据的多种属性）定义在此处
  */
 public enum MultipleFields {
     ITEM_TYPE,

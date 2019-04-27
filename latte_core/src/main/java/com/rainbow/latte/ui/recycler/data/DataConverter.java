@@ -1,7 +1,11 @@
-package com.rainbow.latte.ui.recycler;
+package com.rainbow.latte.ui.recycler.data;
 
 import java.util.ArrayList;
 
+/**
+ * 数据转换器
+ * convert()实现Json的转换
+ */
 public abstract class DataConverter {
 
     protected final ArrayList<MultipleItemEntity> ENTITIES = new ArrayList<>();

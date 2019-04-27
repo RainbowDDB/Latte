@@ -8,13 +8,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.rainbow.latte.app.Latte;
 import com.rainbow.latte.net.RestClient;
-import com.rainbow.latte.ui.recycler.DataConverter;
 import com.rainbow.latte.ui.recycler.MultipleRecyclerAdapter;
+import com.rainbow.latte.ui.recycler.data.DataConverter;
 
 public class RefreshHandler
         implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
-    //    private final Context CONTEXT;
+    // private final Context CONTEXT;
     private final SwipeRefreshLayout REFRESH_LAYOUT;
     private final PagingBean BEAN;
     private final RecyclerView RECYCLER_VIEW;

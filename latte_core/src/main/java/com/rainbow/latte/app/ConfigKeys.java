@@ -9,5 +9,7 @@ public enum ConfigKeys {
     CONFIG_READY, // 初始化是否完成
     ICON, // 自定义初始化项目
     INTERCEPTORS, // 拦截器
-    HANDLER
+    HANDLER,
+    DEBUG, // debug状态
+    JAVASCRIPT_INTERFACE // WebView对接
 }

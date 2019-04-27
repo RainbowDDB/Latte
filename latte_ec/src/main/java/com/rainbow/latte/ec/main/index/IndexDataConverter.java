@@ -3,10 +3,10 @@ package com.rainbow.latte.ec.main.index;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.rainbow.latte.ui.recycler.DataConverter;
-import com.rainbow.latte.ui.recycler.ItemType;
-import com.rainbow.latte.ui.recycler.MultipleFields;
-import com.rainbow.latte.ui.recycler.MultipleItemEntity;
+import com.rainbow.latte.ui.recycler.data.DataConverter;
+import com.rainbow.latte.ui.recycler.data.ItemType;
+import com.rainbow.latte.ui.recycler.data.MultipleFields;
+import com.rainbow.latte.ui.recycler.data.MultipleItemEntity;
 import com.rainbow.latte.util.logger.LatteLogger;
 
 import java.util.ArrayList;
@@ -22,11 +22,14 @@ public class IndexDataConverter extends DataConverter {
         for (int i = 0; i < size; i++) {
             final JsonObject data = jsonArray.get(i).getAsJsonObject();
 
-            final String imageUrl = !data.has("imageUrl") ? null : data.get("imageUrl").getAsString();
-            final String text = !data.has("text") ? null : data.get("text").getAsString();
+            final String imageUrl = !data.has("imageUrl") ?
+                    null : data.get("imageUrl").getAsString();
+            final String text = !data.has("text") ?
+                    null : data.get("text").getAsString();
             final int spanSize = data.get("spanSize").getAsInt();
             final int id = data.get("goodsId").getAsInt();
-            final JsonArray banners = !data.has("banners") ? null : data.get("banners").getAsJsonArray();
+            final JsonArray banners = !data.has("banners") ?
+                    null : data.get("banners").getAsJsonArray();
 
             final ArrayList<String> bannerImages = new ArrayList<>();
             int type = 0;

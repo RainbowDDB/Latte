@@ -4,16 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <com.rainbow.latte.ui.header.StatusAppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
-        <android.support.v7.widget.Toolbar
+        <com.rainbow.latte.ui.header.StatusToolbar
             android:id="@+id/tb_index"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@android:color/transparent"
-            app:layout_scrollFlags="scroll|enterAlways">
+            android:layout_height="48dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -24,22 +23,21 @@
                     android:id="@+id/icon_index_scan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:text="{icon-scan}"
                     android:textColor="@android:color/white"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/et_search_view"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="32dp"
                     android:layout_gravity="center"
                     android:layout_weight="4"
                     android:background="@android:color/white"
+                    android:fitsSystemWindows="true"
                     android:gravity="center_vertical"
                     android:hint="搜索"
                     android:paddingLeft="10dp"
@@ -49,17 +47,15 @@
                     android:id="@+id/icon_index_message"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:text="{fa-bullhorn}"
                     android:textColor="@android:color/white"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+        </com.rainbow.latte.ui.header.StatusToolbar>
+    </com.rainbow.latte.ui.header.StatusAppBarLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_index"

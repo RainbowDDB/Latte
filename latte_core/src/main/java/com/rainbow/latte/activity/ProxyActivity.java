@@ -10,6 +10,7 @@ import com.rainbow.latte.delegate.LatteDelegate;
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
+import qiu.niorgai.StatusBarCompat;
 
 public abstract class ProxyActivity extends SupportActivity {
 
@@ -19,6 +20,7 @@ public abstract class ProxyActivity extends SupportActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initContainer(savedInstanceState);
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     private void initContainer(@Nullable Bundle savedInstanceState) {

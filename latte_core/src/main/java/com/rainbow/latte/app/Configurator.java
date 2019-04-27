@@ -4,15 +4,24 @@ import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
+import com.rainbow.latte.delegate.web.event.Event;
+import com.rainbow.latte.delegate.web.event.EventManager;
+import com.rainbow.latte.util.logger.LatteLogger;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import me.yokeyword.fragmentation.Fragmentation;
 import okhttp3.Interceptor;
 
 /**
  * 全局配置生成器
  */
+@SuppressWarnings("unused")
 public class Configurator {
 
     // 键值对方式存放配置信息
@@ -24,6 +33,7 @@ public class Configurator {
     private Configurator() {
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
         LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
+        LATTE_CONFIGS.put(ConfigKeys.DEBUG, false);
     }
 
     static Configurator getInstance() {
@@ -41,7 +51,22 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
+        Logger.addLogAdapter(new AndroidLogAdapter());
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
+        Fragmentation.FragmentationBuilder builder =
+                Fragmentation.builder()
+                        // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏  BUBBLE 显示
+                        .stackViewMode(Fragmentation.BUBBLE)
+                        // 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
+                        .handleException(e -> {
+                            // 建议在该回调处上传至我们的Crash监测服务器
+                            LatteLogger.e("Fragmentation ERROR", e.toString());
+                        });
+        if (Latte.getConfiguration(ConfigKeys.DEBUG)) {
+            builder.debug(true).install();
+        } else {
+            builder.debug(false).install();
+        }
     }
 
     public final Configurator withApiHost(String host) {
@@ -63,6 +88,21 @@ public class Configurator {
     public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         LATTE_CONFIGS.put(ConfigKeys.INTERCEPTORS, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withJavascriptInterface(@NotNull String name) {
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
+
+    public final Configurator withWebEvent(@NotNull String name, @NotNull Event event) {
+        EventManager.getInstance().addEvent(name, event);
+        return this;
+    }
+
+    public final Configurator debug(boolean debug) {
+        LATTE_CONFIGS.put(ConfigKeys.DEBUG, debug);
         return this;
     }
 
