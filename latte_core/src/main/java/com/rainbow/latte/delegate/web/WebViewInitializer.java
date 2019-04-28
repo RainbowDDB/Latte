@@ -9,6 +9,15 @@ public class WebViewInitializer {
     @SuppressLint("SetJavaScriptEnabled")
     public WebView createWebView(WebView webView) {
         WebView.setWebContentsDebuggingEnabled(true);
+
+//        // 跨域cookie
+//        final CookieManager cookieManager = CookieManager.getInstance();
+//        cookieManager.setAcceptCookie(true);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            cookieManager.setAcceptThirdPartyCookies(webView, true);
+//        }
+//        CookieManager.setAcceptFileSchemeCookies(true);
+
         // 不能横向纵向滚动
         webView.setHorizontalScrollBarEnabled(false);
         webView.setVerticalScrollBarEnabled(false);

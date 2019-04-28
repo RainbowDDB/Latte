@@ -18,15 +18,17 @@ public class RefreshHandler
     private final SwipeRefreshLayout REFRESH_LAYOUT;
     private final PagingBean BEAN;
     private final RecyclerView RECYCLER_VIEW;
+    private MultipleRecyclerAdapter mAdapter;
     private final DataConverter CONVERTER;
-    private MultipleRecyclerAdapter mAdapter = null;
 
     private RefreshHandler(SwipeRefreshLayout refreshLayout,
                            RecyclerView recyclerView,
+                           MultipleRecyclerAdapter adapter,
                            DataConverter converter,
                            PagingBean bean) {
         this.REFRESH_LAYOUT = refreshLayout;
         this.RECYCLER_VIEW = recyclerView;
+        this.mAdapter = adapter;
         this.CONVERTER = converter;
         this.BEAN = bean;
         REFRESH_LAYOUT.setOnRefreshListener(this);
@@ -34,8 +36,14 @@ public class RefreshHandler
 
     public static RefreshHandler create(SwipeRefreshLayout swipeRefreshLayout,
                                         RecyclerView recyclerView,
+                                        MultipleRecyclerAdapter adapter,
                                         DataConverter converter) {
-        return new RefreshHandler(swipeRefreshLayout, recyclerView, converter, new PagingBean());
+        return new RefreshHandler(
+                swipeRefreshLayout,
+                recyclerView,
+                adapter,
+                converter,
+                new PagingBean());
     }
 
     @Override
@@ -45,9 +53,7 @@ public class RefreshHandler
 
     private void refresh() {
         REFRESH_LAYOUT.setRefreshing(true);
-        Latte.getHandler().postDelayed(() -> {
-            REFRESH_LAYOUT.setRefreshing(false);
-        }, 2000);
+        Latte.getHandler().postDelayed(() -> REFRESH_LAYOUT.setRefreshing(false), 2000);
     }
 
     public void firstPage(String url) {
@@ -58,8 +64,7 @@ public class RefreshHandler
                     final JsonObject object = new JsonParser().parse(response).getAsJsonObject();
                     BEAN.setTotal(object.get("total").getAsInt())
                             .setPageSize(object.get("page_size").getAsInt());
-                    // 设置adapter
-                    mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
+                    mAdapter = mAdapter.create(CONVERTER.setJsonData(response));
                     mAdapter.setOnLoadMoreListener(this, RECYCLER_VIEW);
                     RECYCLER_VIEW.setAdapter(mAdapter);
                     BEAN.addIndex();

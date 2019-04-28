@@ -1,7 +1,7 @@
 package com.rainbow.latte.ui.recycler.data;
 
 /**
- * 所有的RecyclerView数据的形式，请将所有的形式自定义于这里
+ * 所有的RecyclerView item数据的形式，请将所有的形式自定义于这里
  *
  * @author Rainbow
  */

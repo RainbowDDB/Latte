@@ -16,6 +16,7 @@ public class IndexDataConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {
         LatteLogger.json("index-json", getJsonData());
+        final ArrayList<MultipleItemEntity> entities = new ArrayList<>();
         final JsonObject jsonObject = new JsonParser().parse(getJsonData()).getAsJsonObject();
         final JsonArray jsonArray = jsonObject.getAsJsonArray("data");
         final int size = jsonArray.size();
@@ -57,8 +58,8 @@ public class IndexDataConverter extends DataConverter {
                     .setField(MultipleFields.BANNERS, bannerImages)
                     .build();
 
-            ENTITIES.add(entity);
+            entities.add(entity);
         }
-        return ENTITIES;
+        return entities;
     }
 }

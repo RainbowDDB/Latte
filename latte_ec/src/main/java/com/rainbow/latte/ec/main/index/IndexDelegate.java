@@ -37,8 +37,8 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NotNull View rootView) {
-//        StatusBarCompat.setStatusBarColor(getProxyActivity(), getResources().getColor(android.R.color.holo_orange_dark));
-        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+        mRefreshHandler = RefreshHandler.create(
+                mRefreshLayout, mRecyclerView, new IndexAdapter(), new IndexDataConverter());
     }
 
     private void initRefreshLayout() {

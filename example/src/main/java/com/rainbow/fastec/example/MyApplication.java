@@ -21,7 +21,7 @@ public class MyApplication extends Application {
                 .withInterceptor(new DebugInterceptor("index", R.raw.index_data))
                 .withJavascriptInterface("latte")
                 .withWebEvent("test", new TestEvent())
-                .debug(true)
+                .debug(false)
                 .configure();
 
         DatabaseManager.getInstance().init(this);
