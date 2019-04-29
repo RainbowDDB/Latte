@@ -13,4 +13,9 @@ public abstract class LatteDelegate extends PermissionCheckerDelegate {
             setSwipeBackEnable(false);
         }
     }
+
+    @SuppressWarnings("unchecked")
+    public <T extends LatteDelegate> T getParentDelegate() {
+        return (T) getParentFragment();
+    }
 }

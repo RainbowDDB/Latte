@@ -19,6 +19,7 @@ public class StatusAppBarLayout extends AppBarLayout {
 
     private void init(Context context) {
         // 沉浸式padding设置
+        // 要求其layout_height必须为wrap_content！！！
         setPadding(0, DimenUtil.getStatusBarHeight(context), 0, 0);
     }
 }
