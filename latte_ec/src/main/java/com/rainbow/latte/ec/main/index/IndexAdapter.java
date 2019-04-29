@@ -1,15 +1,17 @@
 package com.rainbow.latte.ec.main.index;
 
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rainbow.latte.ec.R;
 import com.rainbow.latte.ui.banner.BannerCreator;
 import com.rainbow.latte.ui.img.GlideApp;
 import com.rainbow.latte.ui.recycler.MultipleRecyclerAdapter;
 import com.rainbow.latte.ui.recycler.MultipleViewHolder;
-import com.rainbow.latte.ui.recycler.data.DataConverter;
 import com.rainbow.latte.ui.recycler.data.ItemType;
 import com.rainbow.latte.ui.recycler.data.MultipleFields;
 import com.rainbow.latte.ui.recycler.data.MultipleItemEntity;
@@ -17,7 +19,8 @@ import com.rainbow.latte.ui.recycler.data.MultipleItemEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class IndexAdapter extends MultipleRecyclerAdapter implements OnItemClickListener {
+public final class IndexAdapter extends MultipleRecyclerAdapter
+        implements OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
 
     // 确保初始化一次Banner，防止重复item加载
     private boolean mIsInitBanner = false;
@@ -28,6 +31,7 @@ public final class IndexAdapter extends MultipleRecyclerAdapter implements OnIte
 
     IndexAdapter() {
         this(null);
+        setOnItemClickListener(this);
     }
 
     @Override
@@ -39,15 +43,11 @@ public final class IndexAdapter extends MultipleRecyclerAdapter implements OnIte
     }
 
     @Override
-    public MultipleRecyclerAdapter create(DataConverter converter) {
-        return new IndexAdapter(converter.convert());
-    }
-
-    @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
         final String text;
         final String imageUrl;
         final ArrayList<String> bannerImages;
+
         switch (holder.getItemViewType()) {
             case ItemType.TEXT:
                 text = entity.getField(MultipleFields.TEXT);
@@ -87,5 +87,10 @@ public final class IndexAdapter extends MultipleRecyclerAdapter implements OnIte
     @Override
     public void onItemClick(int position) {
 
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Toast.makeText(mContext, view.getTag() + "\n" + position, Toast.LENGTH_SHORT).show();
     }
 }

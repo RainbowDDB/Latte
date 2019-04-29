@@ -64,7 +64,7 @@ public class RefreshHandler
                     final JsonObject object = new JsonParser().parse(response).getAsJsonObject();
                     BEAN.setTotal(object.get("total").getAsInt())
                             .setPageSize(object.get("page_size").getAsInt());
-                    mAdapter = mAdapter.create(CONVERTER.setJsonData(response));
+                    mAdapter.setDataConverter(CONVERTER.setJsonData(response));
                     mAdapter.setOnLoadMoreListener(this, RECYCLER_VIEW);
                     RECYCLER_VIEW.setAdapter(mAdapter);
                     BEAN.addIndex();

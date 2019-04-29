@@ -26,8 +26,6 @@ public abstract class MultipleRecyclerAdapter
     // 添加Items
     protected abstract void addItemTypes();
 
-    public abstract MultipleRecyclerAdapter create(DataConverter converter);
-
     private void init() {
         addItemTypes();
         // 设置宽度监听
@@ -45,5 +43,9 @@ public abstract class MultipleRecyclerAdapter
     @Override
     public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
         return getData().get(position).getField(MultipleFields.SPAN_SIZE);
+    }
+
+    public void setDataConverter(DataConverter converter) {
+        setNewData(converter.convert());
     }
 }
